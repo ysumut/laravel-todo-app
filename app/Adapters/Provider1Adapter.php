@@ -4,7 +4,7 @@ namespace App\Adapters;
 
 use App\Interfaces\ApiInterface;
 
-class Mock1Adapter implements ApiInterface
+class Provider1Adapter implements ApiInterface
 {
     private array $data;
 

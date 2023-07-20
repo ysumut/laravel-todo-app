@@ -2,21 +2,21 @@
 
 namespace App\Services;
 
-use App\Adapters\Mock1Adapter;
-use App\Adapters\Mock2Adapter;
+use App\Adapters\Provider1Adapter;
+use App\Adapters\Provider2Adapter;
 use App\Interfaces\ApiInterface;
 use App\Models\Work;
 use Illuminate\Support\Facades\Http;
 
 class WorkService
 {
-    private const ALL_WORK_API = [
+    private const PROVIDERS = [
         [
-            'type' => Mock1Adapter::class,
+            'type' => Provider1Adapter::class,
             'url' => 'http://www.mocky.io/v2/5d47f24c330000623fa3ebfa'
         ],
         [
-            'type' => Mock2Adapter::class,
+            'type' => Provider2Adapter::class,
             'url' => 'http://www.mocky.io/v2/5d47f235330000623fa3ebf7'
         ],
     ];
@@ -27,7 +27,7 @@ class WorkService
     private function fetchMockData(): array
     {
         $works = [];
-        foreach (self::ALL_WORK_API as $api) {
+        foreach (self::PROVIDERS as $api) {
             $mockData = Http::get($api['url'])->json();
             foreach ($mockData as $m) {
                 $works[] = new $api['type']($m);
