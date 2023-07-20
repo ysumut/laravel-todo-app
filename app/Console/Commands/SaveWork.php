@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\WorkController;
+use App\Services\WorkService;
 use Illuminate\Console\Command;
 
 class SaveWork extends Command
@@ -12,7 +12,7 @@ class SaveWork extends Command
      *
      * @var string
      */
-    protected $signature = 'save:work';
+    protected $signature = 'save:work {--reset}';
 
     /**
      * The console command description.
@@ -28,7 +28,8 @@ class SaveWork extends Command
      */
     public function handle()
     {
-        (new WorkController())->store();
+        $reset = !!$this->option('reset');
+        (new WorkService())->saveData($reset);
         return Command::SUCCESS;
     }
 }
