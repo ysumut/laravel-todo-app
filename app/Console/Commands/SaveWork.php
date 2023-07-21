@@ -29,7 +29,7 @@ class SaveWork extends Command
     public function handle()
     {
         $reset = !!$this->option('reset');
-        (new WorkService())->saveData($reset);
+        (new WorkService())->saveWorks($reset);
         return Command::SUCCESS;
     }
 }

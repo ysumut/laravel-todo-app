@@ -37,10 +37,18 @@ class WorkService
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getWorks(): \Illuminate\Database\Eloquent\Collection
+    {
+        return Work::all();
+    }
+
+    /**
      * @param bool $reset
      * @return void
      */
-    public function saveData(bool $reset): void
+    public function saveWorks(bool $reset): void
     {
         $works = $this->fetchMockData();
 
